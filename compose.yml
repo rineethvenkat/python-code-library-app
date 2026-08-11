@@ -14,7 +14,7 @@ services:
     deploy:
       replicas: 1
     ports:
-      - "5001:5001 "
+      - "5001:5001"
     networks:
       - mynetwork
     depends_on:
