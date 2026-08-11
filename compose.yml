@@ -9,7 +9,7 @@ services:
     networks:
       - mynetwork
 
-  auth:
+  auth_service:
     image: rineethvenkat/pylibapp:auth-image
     deploy:
       replicas: 1
@@ -20,7 +20,7 @@ services:
     depends_on:
       - db
 
-  book:
+  book_service:
     image: rineethvenkat/pylibapp:book-image
     deploy:
       replicas: 1
@@ -31,7 +31,7 @@ services:
     depends_on:
       - db
 
-  borrow:
+  borrow_service:
     image: rineethvenkat/pylibapp:borrow-image
     deploy:
       replicas: 1
