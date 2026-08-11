@@ -1,7 +1,7 @@
 ---
 services:
   db:
-    image: shaikmustafa/arshad:db
+    image: rineethvenkat/pylibapp:db-image
     deploy:
       replicas: 1
     ports:
@@ -9,20 +9,19 @@ services:
     networks:
       - mynetwork
 
-  auth_service:
-    image: shaikmustafa/arshad:auth
+  auth:
+    image: rineethvenkat/pylibapp:auth-image
     deploy:
       replicas: 1
     ports:
-      - "5001:5001"
+      - "5001:5001 "
     networks:
       - mynetwork
     depends_on:
       - db
-    
 
-  book_service:
-    image: shaikmustafa/arshad:book
+  book:
+    image: rineethvenkat/pylibapp:book-image
     deploy:
       replicas: 1
     ports:
@@ -31,8 +30,9 @@ services:
       - mynetwork
     depends_on:
       - db
-  borrow_service:
-    image: shaikmustafa/arshad:borrow
+
+  borrow:
+    image: rineethvenkat/pylibapp:borrow-image
     deploy:
       replicas: 1
     ports:
@@ -43,7 +43,7 @@ services:
       - db
 
   frontend:
-    image: shaikmustafa/arshad:frontend
+    image: rineethvenkat/pylibapp:frontend-image
     deploy:
       replicas: 1
     ports:
@@ -51,10 +51,10 @@ services:
     networks:
       - mynetwork
     depends_on:
-      - auth_service
-      - book_service
-      - borrow_service
+      - auth
+      - book
+      - borrow
 
 networks:
   mynetwork:
-    driver: bridge
+    driver: overlay
